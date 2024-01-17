@@ -1,3 +1,5 @@
+import fetchSingleUser from '@/lib/fetchSingleUser'
+import fetchSingleUserPosts from '@/lib/fetchSingleUserPosts'
 import axios from 'axios'
 import React, { Suspense } from 'react'
 
@@ -7,32 +9,9 @@ type Props = {
 	}
 }
 
-export const fetchUser = async (userId: string) => {
-	try {
-		const res = await axios.get(
-			`https://jsonplaceholder.typicode.com/users/${Number(userId)}`
-		)
-		return res.data
-	} catch (error) {
-		throw new Error('Failed to fetch data')
-	}
-}
-
-export const fetchUserPosts = async (userId: string) => {
-	try {
-		const res = await axios.get(
-			`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
-		)
-
-		return res.data
-	} catch (error) {
-		throw new Error('Failed to fetch data')
-	}
-}
-
 const UserPage = async ({ params: { userId } }: Props) => {
-	const user = await fetchUser(userId)
-	const userPosts: IPost[] = await fetchUserPosts(userId)
+	const user = await fetchSingleUser(userId)
+	const userPosts: IPost[] = await fetchSingleUserPosts(userId)
 
 	return (
 		<div>
