@@ -1,7 +1,13 @@
 import axios from 'axios'
+import { Metadata } from 'next'
 import Link from 'next/link'
 
 type Props = {}
+
+export const metadata: Metadata = {
+	title: 'Users',
+	description: 'The users page'
+}
 
 export const fetchUsers = async () => {
 	try {
