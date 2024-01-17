@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateMetadata({
 	params: { userId }
-}: Props): Metadata {
+}: Props): Promise<Metadata>{
 	const userData = await fetchSingleUser(userId)
 	return {
 		title: userData.name,
