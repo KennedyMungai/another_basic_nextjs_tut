@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 type Props = {
 	params: {
@@ -24,7 +24,7 @@ export const fetchUserPosts = async (userId: string) => {
 			`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
 		)
 
-        return res.data
+		return res.data
 	} catch (error) {
 		throw new Error('Failed to fetch data')
 	}
@@ -54,14 +54,20 @@ const UserPage = async ({ params: { userId } }: Props) => {
 			<br />
 			<h2>Posts</h2>
 			<div>
-				{userPosts.map((post: IPost) => (
-					<div key={post.id}>
-                        <p>{post.title}</p>
-                        <p className='text-xs'>{post.body}</p>
-                        <br />
-                        <br />
-                    </div>
-				))}
+				<Suspense
+					fallback={
+						<p className='text-xl text-red-500'>Loading Posts...</p>
+					}
+				>
+					{userPosts.map((post: IPost) => (
+						<div key={post.id}>
+							<p>{post.title}</p>
+							<p className='text-xs'>{post.body}</p>
+							<br />
+							<br />
+						</div>
+					))}
+				</Suspense>
 			</div>
 		</div>
 	)
