@@ -23,6 +23,8 @@ export const fetchUserPosts = async (userId: string) => {
 		const res = await axios.get(
 			`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
 		)
+
+        return res.data
 	} catch (error) {
 		throw new Error('Failed to fetch data')
 	}
@@ -30,6 +32,7 @@ export const fetchUserPosts = async (userId: string) => {
 
 const UserPage = async ({ params: { userId } }: Props) => {
 	const user = await fetchUser(userId)
+	const userPosts: IPost[] = await fetchUserPosts(userId)
 
 	return (
 		<div>
@@ -46,6 +49,20 @@ const UserPage = async ({ params: { userId } }: Props) => {
 			<p>{user.company.name}</p>
 			<p>{user.company.catchPhrase}</p>
 			<p>{user.company.bs}</p>
+			<br />
+			<br />
+			<br />
+			<h2>Posts</h2>
+			<div>
+				{userPosts.map((post: IPost) => (
+					<div key={post.id}>
+                        <p>{post.title}</p>
+                        <p className='text-xs'>{post.body}</p>
+                        <br />
+                        <br />
+                    </div>
+				))}
+			</div>
 		</div>
 	)
 }
