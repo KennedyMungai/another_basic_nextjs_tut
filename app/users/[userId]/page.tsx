@@ -1,11 +1,21 @@
 import fetchSingleUser from '@/lib/fetchSingleUser'
 import fetchSingleUserPosts from '@/lib/fetchSingleUserPosts'
-import axios from 'axios'
-import React, { Suspense } from 'react'
+import { Metadata } from 'next'
+import { Suspense } from 'react'
 
 type Props = {
 	params: {
 		userId: string
+	}
+}
+
+export async function generateMetadata({
+	params: { userId }
+}: Props): Metadata {
+	const userData = await fetchSingleUser(userId)
+	return {
+		title: userData.name,
+		description: `This is ${userData.name}'s page`
 	}
 }
 
