@@ -1,5 +1,4 @@
-interface IUser
-{
+interface IUser {
     id: number
     name: string
     username: string
@@ -10,8 +9,7 @@ interface IUser
     company: ICompany
 }
 
-interface IAddress
-{
+interface IAddress {
     street: string
     suite: string
     city: string
@@ -19,15 +17,20 @@ interface IAddress
     geo: IGeo
 }
 
-interface IGeo
-{
+interface IGeo {
     lat: string
     lon: string
 }
 
-interface ICompany
-{
+interface ICompany {
     name: string
     catchPhrase: string
     bs: string
+}
+
+interface IPost {
+    userId: number
+    id: number
+    title: string
+    body: string
 }
