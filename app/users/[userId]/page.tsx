@@ -9,10 +9,11 @@ type Props = {
 	}
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
 	params: { userId }
-}: Props): Promise<Metadata>{
+}: Props): Promise<Metadata> => {
 	const userData = await fetchSingleUser(userId)
+
 	return {
 		title: userData.name,
 		description: `This is ${userData.name}'s page`
