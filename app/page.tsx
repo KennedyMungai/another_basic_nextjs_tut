@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Link from 'next/link'
 
 export default async function Home() {
@@ -8,7 +7,6 @@ export default async function Home() {
 			<p>
 				<Link href={'/users'}>Users</Link>
 			</p>
-			
 		</main>
 	)
 }

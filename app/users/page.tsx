@@ -14,7 +14,7 @@ export const fetchUsers = async () => {
 }
 
 const UsersPage = async (props: Props) => {
-    const users = await fetchUsers()
+	const users = await fetchUsers()
 
 	return (
 		<div>
