@@ -16,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className='pb-5 border-b border-black'>
+          <h1>Some Nav Bar</h1>
+        </nav>
+        {children}
+      </body>
     </html>
   )
 }
