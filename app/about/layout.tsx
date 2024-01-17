@@ -5,7 +5,7 @@ type Props = {
 }
 
 const AboutLayout = ({children}: Props) => {
-	return <div className="bg-slate-500">{children}</div>
+	return <div>{children}</div>
 }
 
 export default AboutLayout
