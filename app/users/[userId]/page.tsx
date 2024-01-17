@@ -8,14 +8,24 @@ type Props = {
 }
 
 export const fetchUser = async (userId: string) => {
-    try {
-        const res = await axios.get(
-            `https://jsonplaceholder.typicode.com/users/${Number(userId)}`
-        )
-        return res.data
-    } catch (error) {
-        throw new Error('Failed to fetch data')
-    }
+	try {
+		const res = await axios.get(
+			`https://jsonplaceholder.typicode.com/users/${Number(userId)}`
+		)
+		return res.data
+	} catch (error) {
+		throw new Error('Failed to fetch data')
+	}
+}
+
+export const fetchUserPosts = async (userId: string) => {
+	try {
+		const res = await axios.get(
+			`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
+		)
+	} catch (error) {
+		throw new Error('Failed to fetch data')
+	}
 }
 
 const UserPage = async ({ params: { userId } }: Props) => {
