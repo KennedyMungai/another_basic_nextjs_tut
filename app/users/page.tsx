@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -20,9 +21,11 @@ const UsersPage = async (props: Props) => {
 		<div>
 			<div className=''>
 				{users.map((user: IUser) => (
-					<div key={user.id}>
-						<p>{user.name}</p>
-					</div>
+					<Link key={user.id} href={`/users/${user.id}`}>
+						<div>
+							<p>{user.name}</p>
+						</div>
+					</Link>
 				))}
 			</div>
 		</div>
