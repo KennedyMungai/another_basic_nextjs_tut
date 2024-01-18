@@ -1,4 +1,4 @@
-import axios from 'axios'
+import fetchAllUsers from '@/lib/fetchAllUsers'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -9,19 +9,10 @@ export const metadata: Metadata = {
 	description: 'The users page'
 }
 
-export const fetchUsers = async () => {
-	try {
-		const res = await axios.get(
-			'https://jsonplaceholder.typicode.com/users'
-		)
-		return res.data
-	} catch (error) {
-		throw new Error('Failed to fetch data')
-	}
-}
+export 
 
 const UsersPage = async (props: Props) => {
-	const users = await fetchUsers()
+	const users = await fetchAllUsers()
 
 	return (
 		<div>
