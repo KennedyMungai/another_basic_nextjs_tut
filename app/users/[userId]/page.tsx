@@ -14,9 +14,10 @@ type Props = {
 export const generateMetadata = async ({
 	params: { userId }
 }: Props): Promise<Metadata> => {
-	const userData = await fetchSingleUser(userId)
+	const userData: IUser = await fetchSingleUser(userId)
+	const user = await userData
 
-	if (!userData.name) {
+	if (!userData) {
 		return {
 			title: 'User Not Found',
 			description: 'The user requested was not found'
@@ -30,7 +31,7 @@ export const generateMetadata = async ({
 }
 
 const UserPage = async ({ params: { userId } }: Props) => {
-	const user = await fetchSingleUser(userId)
+	const user: IUser = await fetchSingleUser(userId)
 	const userPosts: IPost[] = await fetchSingleUserPosts(userId)
 
 	if(!user.name) return notFound()
@@ -46,7 +47,7 @@ const UserPage = async ({ params: { userId } }: Props) => {
 			<p>{user.address.suite}</p>
 			<p>{user.address.zipcode}</p>
 			<p>{user.address.geo.lat}</p>
-			<p>{user.address.geo.lng}</p>
+			<p>{user.address.geo.lon}</p>
 			<p>{user.company.name}</p>
 			<p>{user.company.catchPhrase}</p>
 			<p>{user.company.bs}</p>
