@@ -2,6 +2,7 @@ import fetchAllUsers from '@/lib/fetchAllUsers'
 import fetchSingleUser from '@/lib/fetchSingleUser'
 import fetchSingleUserPosts from '@/lib/fetchSingleUserPosts'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
 type Props = {
@@ -31,6 +32,8 @@ export const generateMetadata = async ({
 const UserPage = async ({ params: { userId } }: Props) => {
 	const user = await fetchSingleUser(userId)
 	const userPosts: IPost[] = await fetchSingleUserPosts(userId)
+
+	if(!user.name) return notFound()
 
 	return (
 		<div>
