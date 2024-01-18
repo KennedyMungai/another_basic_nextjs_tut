@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 	description: 'The users page'
 }
 
-export 
-
 const UsersPage = async (props: Props) => {
 	const users = await fetchAllUsers()
 
