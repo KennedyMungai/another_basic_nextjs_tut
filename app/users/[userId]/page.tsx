@@ -1,3 +1,4 @@
+import fetchAllUsers from '@/lib/fetchAllUsers'
 import fetchSingleUser from '@/lib/fetchSingleUser'
 import fetchSingleUserPosts from '@/lib/fetchSingleUserPosts'
 import { Metadata } from 'next'
@@ -64,3 +65,10 @@ const UserPage = async ({ params: { userId } }: Props) => {
 }
 
 export default UserPage
+
+export async function generateStaticParams() {
+	const usersData: Promise<IUser[]> = await fetchAllUsers()
+	const users = await usersData
+
+	return users.map((user) => ({ userId: user.id.toString() }))
+}
