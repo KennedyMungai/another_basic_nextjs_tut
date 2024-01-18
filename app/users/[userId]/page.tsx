@@ -15,6 +15,13 @@ export const generateMetadata = async ({
 }: Props): Promise<Metadata> => {
 	const userData = await fetchSingleUser(userId)
 
+	if (!userData.name) {
+		return {
+			title: 'User Not Found',
+			description: 'The user requested was not found'
+		}
+	}
+
 	return {
 		title: userData.name,
 		description: `This is ${userData.name}'s page`
